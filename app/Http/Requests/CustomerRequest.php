@@ -48,10 +48,10 @@ class CustomerRequest extends FormRequest
     public function storeRules(): array
     {
         return [
-            // 'email'     => 'required|email|min:0|max:50',
-            // 'name'      => 'required|string|min:0|max:30',
-            // 'phone'     => 'required|numeric',
-            // 'address'   => 'required|string|min:0|max:255',
+            'email'     => 'required|email|min:0|max:50',
+            'name'      => 'required|string|min:0|max:30',
+            'phone'     => 'required|numeric',
+            'address'   => 'required|string|min:0|max:255',
         ];
     }
     public function storeFilter()

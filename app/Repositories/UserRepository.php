@@ -132,13 +132,15 @@ class UserRepository
 
     public function login($inputs)
     {
-        return SessionUser::create([
+        $session = SessionUser::create([
             'token' => Str::random(40),
             'refresh_token' => Str::random(40),
             'token_expried' => date('Y-m-d H:i:s', strtotime('+30 day')),
             'refresh_token_expried' => date('Y-m-d H:i:s', strtotime('+360 day')),
-            'user_id' =>auth()->id()
+            'user_id' => auth()->id()
         ]);
+        $users = User::findOrFail(auth()->id());
+        return [$session, $users];
     }
 
     public function updateToken($id)

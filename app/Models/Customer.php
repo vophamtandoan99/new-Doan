@@ -8,14 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     protected $table = 'customer';
-    protected $fillable =
-    [   
-        'id',
-        'name', 
-        'phone',
-        'email',
-        'address'
-    ];
+    protected $fillable =['id','name','phone','email','address'];
     protected $guarded = ['created_at', 'updated_at'];
     public $timestamps = true;
 }

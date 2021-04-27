@@ -63,6 +63,13 @@ class BillRepository
         ->orderBy('id', 'desc')
         ->paginate();
     }
+    // public function showBillDetail($bill_id)
+    // {
+    //     return BillDetail::
+    //     whereid_bill($bill_id)
+    //     ->orderBy('id', 'desc')
+    //     ->paginate();
+    // }
     public function show($id)
     {
         return Bill::findOrFail($id);
