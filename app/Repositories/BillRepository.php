@@ -104,7 +104,14 @@ class BillRepository
     public function showBillDetail($id)
     {
         return BillDetail::where('id_bill', $id)
-            ->orderBy('id', 'desc')
+            ->join('product_size_color', 'bills_detail.id_product_size_color', '=', 'product_size_color.id')
+            ->join('size','product_size_color.size_id', '=', 'size.id')
+            ->join('color','product_size_color.color_id', '=', 'color.id')
+            ->join('product', 'product_size_color.product_id', '=', 'product.id')
+            ->select('bills_detail.id_bill as id_bill','product.name as name',
+            'size as size','color as color',
+            'bills_detail.price as price','bills_detail.amount as amount')
+            ->orderBy('bills_detail.id', 'desc')
             ->paginate();
     }
     public function showBill($id)
