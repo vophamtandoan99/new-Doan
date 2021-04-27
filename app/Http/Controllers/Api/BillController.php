@@ -77,6 +77,12 @@ class BillController
         $billDetail = new BillDetailCollection($this->billRepository->showBillDetail($id));
          return [$bill, $billDetail];
     }
+    public function showBillDetail($id){
+        $bill = new BillResource($this->billRepository->showBill($id));
+        $customerInfo = $this->customerRepository->show($bill[0]->customer_id);
+        $billDetail = $this->billRepository->showBillDetail($id);
+        return [$customerInfo, $billDetail];
+    }
     public function update($id)
     {
         $bill = $this->billRepository->show($id);
