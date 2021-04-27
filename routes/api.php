@@ -102,5 +102,6 @@ Route::group(['namespace' => 'Api', 'middleware' => ['cors']], function () {
         Route::put('bill/{id}', 'BillController@update')->name('bill.update');
         Route::delete('bill/{id}', 'BillController@destroy')->name('bill.destroy');
         Route::get('statistical', 'BillController@statistical')->name('bill.statistical');
+        Route::get('billDetail/{id}', 'BillController@showBillDetail')->name('billDetail.show');
     });
 });
