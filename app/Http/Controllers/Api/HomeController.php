@@ -4,26 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\ProductRepository;
+use App\Repositories\HomeRepository;
 use App\Http\Resources\product\ProductResource;
 use App\Http\Resources\product\ProductCollection;
-use App\Http\Resources\product\SizeCollection;
-use App\Http\Resources\product\ColorCollection;
 
 class HomeController extends Controller
 {
-    private $productRepository;
+    private $homeRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(HomeRepository $homeRepository)
     {
-        $this->productRepository = $productRepository;
+        $this->homeRepository = $homeRepository;
     }
-    public function getSize()
+    public function getProductSupplier($id)
     {
-        return new SizeCollection($this->productRepository->getSize());
+        return new ProductCollection($this->homeRepository->getSupplier($id));
     }
-    public function getColor()
+    public function getProductCategory($id)
     {
-        return new ColorCollection($this->productRepository->getColor());
+        return new ProductCollection($this->homeRepository->getCategory($id));
     }
 }

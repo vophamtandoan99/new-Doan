@@ -30,15 +30,11 @@ Route::group(['namespace' => 'Api', 'middleware' => ['cors']], function () {
      
      Route::post('bill', 'BillController@store')->name('bill.store');
      Route::get('bill/{id}', 'BillController@show')->name('bill.show');
-
-    //Size Color
-     Route::get('size', 'homecontroller@getsize')->name('size.show');
-     Route::get('color', 'homecontroller@getcolor')->name('color.show');
      
      //WEB PAGE
-     //Product->Supplier
-     //Route::get('homesupplier/{id}', 'HomeController@showIdSupplier')->name('home.homesupplier');
-     Route::get('home', 'HomeController@getAll')->name('home.all');
+     // Sản phẩm theo nhà cung cấp
+     Route::get('product-supplier/{id}', 'HomeController@getProductSupplier')->name('product.supplier');
+     Route::get('product-category/{id}', 'HomeController@getProductCategory')->name('product.category');
 
      //Token
      Route::post('refresh', 'LoginController@refreshToken')->name('refreshToken');
@@ -79,6 +75,9 @@ Route::group(['namespace' => 'Api', 'middleware' => ['cors']], function () {
             Route::get('product/{id}', 'ProductController@show')->name('product.show');
             Route::put('product/{id}', 'ProductController@update')->name('product.update');
             Route::delete('product/{id}', 'ProductController@destroy')->name('product.destroy');
+            //Size Color
+            Route::get('size', 'homecontroller@getsize')->name('size.show');
+            Route::get('color', 'homecontroller@getcolor')->name('color.show');
 
             Route::get('category', 'CategoryController@search')->name('category.search');
         });

@@ -13,6 +13,8 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductSizeColorRequest;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Http\Request;
+use App\Http\Resources\product\SizeCollection;
+use App\Http\Resources\product\ColorCollection;
 
 use App\Models\SessionUser;
 
@@ -41,7 +43,7 @@ class ProductController extends Controller
         if($request->hasFile('img')){
             $image          = $request->file('img');
             $newNamefile    = rand().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('/uploads'),$newNamefile);
+            $image->move(public_path('/uploads/product'),$newNamefile);
             $product        = new BaseResource($this->productRepository->store($request->storeFilter(), $newNamefile));
             $product_id     = $product->id;
             
@@ -105,6 +107,15 @@ class ProductController extends Controller
     public function category($id)
     {
         return new ProductCollection($this->productRepository->category($id));
+    }
+
+    public function getSize()
+    {
+        return new SizeCollection($this->productRepository->getSize());
+    }
+    public function getColor()
+    {
+        return new ColorCollection($this->productRepository->getColor());
     }
 }
  
